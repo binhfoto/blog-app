@@ -6,8 +6,8 @@ var router = require('express').Router();
 
 // require them and mount them to their respective routes below
 // by default, 'require' function will get the index.js file
-router.use('/users', require('./user'));
-router.use('/categories', require('./category'));
-router.use('/posts', require('./post'))
+router.use('/users', require('./user/route'));
+router.use('/categories', require('./category/route'));
+router.use('/posts', require('./post/route'));
 
 module.exports = router;
