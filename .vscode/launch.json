@@ -6,7 +6,7 @@
             "type": "node",
             "request": "launch",
             //"program": "${workspaceRoot}/index.js",
-            "program": "${workspaceRoot}/temp/promiseTester.js",
+            "program": "${workspaceRoot}/index.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",

@@ -1,4 +1,5 @@
 var User = require('./model.js');
+var signToken = require('../../auth/auth').signToken;
 var _ = require('lodash');
 
 var controller = {};
@@ -55,8 +56,17 @@ controller.put = function(req, res, next) {
 };
 
 controller.post = function(req, res, next) {
-    var newUser = req.body;
-    Post
+    var newUser = new User(req.body);
+    
+    newUser.save(function(err, user){
+        if(err) next(err);
+
+        var token = signToken(user._id);
+        res.json({token: token});
+    });
+
+    /*var newUser = req.body;
+    User
         .create(newUser)
         .then(
             function(user){
@@ -65,7 +75,7 @@ controller.post = function(req, res, next) {
             function(err){
                 next(err);
             }
-        );
+        );*/
 };
 
 controller.delete = function(req, res, next) {
