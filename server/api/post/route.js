@@ -1,10 +1,7 @@
 var router = require('express').Router();
-var logger = require('../../util/logger.js');
+var controller = require('./controller.js');
+var createRoutes = require('../../util/createRoutes.js');
 
-router.route('/')
-    .get(function(req, res){
-        logger.log('Hey from post!!');
-        res.send({ok: true});
-    });
+createRoutes(router, controller);
 
 module.exports = router;

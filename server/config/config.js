@@ -7,8 +7,12 @@ var config = {
     dev: 'development', // same name as development.js
     test: 'tesing', // same name as testing.js
     prod: 'production', // same name as production.js 
-    port: process.env.PORT || 3000
-    // env: null
+    port: process.env.PORT || 3000,
+    // 10 days in minute
+    expireTime: 24*60*10,
+    secrets: {
+        jwt: process.env.JWT || 'gumball'
+    } 
 };
 
 // check to see if the NODE_ENV was set, if not, then set it to dev

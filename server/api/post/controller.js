@@ -6,7 +6,7 @@ var controller = {};
 controller.params = function(req, res, next, id) {
     Post
         .findById(id)
-        .population('author categories')
+        .populate('author categories')
         .exec()
         .then(
             function(post){
@@ -50,7 +50,7 @@ controller.params = function(req, res, next, id) {
 controller.get = function(req, res, next){
     Post
         .find({})
-        .poluplation('author categories')
+        .populate('author categories')
         .exec()
         .then(
             function(posts){
