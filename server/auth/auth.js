@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 var expressJwt = require ('express-jwt');
 var config = require('./../config/config');
+// Middleware that validates JsonWebTokens and sets req.user
 var checkToken = expressJwt({secret: config.secrets.jwt});
 var User = require('./../api/user/model');
 
@@ -58,6 +59,7 @@ exports.getFreshUser = function(){
         // we'll have access to req.user here
         // because we'll use decodeToken in before this function in the middleware stack.
         // req.user will just be an object with the user id on it
+        // NOTE that 'req.user' object is not from /api/users/:id, checkToken will create/add 'user' to req, this 'user' represents the user in browser 
         User.findById(req.user._id)
             .then(function(user){
                 if(!user){
