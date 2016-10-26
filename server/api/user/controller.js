@@ -7,6 +7,8 @@ var controller = {};
 controller.params = function(req, res, next, id){
     User
         .findById(id)
+        .select('-password') // '-' means exclude this property from querying
+        .exec()
         .then(
             function(user){
                 if(!user){
@@ -25,7 +27,9 @@ controller.params = function(req, res, next, id){
 
 controller.get = function(req, res, next){
     User
-        .find({}) // or .find()
+        .find()
+        .select('-password') // '-' means exclude this property from querying
+        .exec()
         .then(
             function(users){
                 res.json(users);
@@ -37,7 +41,7 @@ controller.get = function(req, res, next){
 };
 
 controller.getOne = function(req, res, next) {
-    res.json(req.user);
+    res.json(req.user.toJson());
 };
 
 controller.put = function(req, res, next) {
@@ -50,7 +54,7 @@ controller.put = function(req, res, next) {
         if(err){
             next(err);
         }else{
-            res.json(savedUser);
+            res.json(savedUser.toJson());
         }
     });
 };
@@ -59,7 +63,7 @@ controller.post = function(req, res, next) {
     var newUser = new User(req.body);
     
     newUser.save(function(err, user){
-        if(err) next(err);
+        if(err) return next(err);
 
         var token = signToken(user._id);
         res.json({token: token});
@@ -84,7 +88,7 @@ controller.delete = function(req, res, next) {
         if(err){
             next(err);
         } else{
-            res.json(user);
+            res.json(user.toJson());
         }
 
     });
@@ -93,6 +97,10 @@ controller.delete = function(req, res, next) {
     User.remove(user, function(err){
 
     });*/
+};
+
+controller.me = function(req, res, next){
+    res.json(req.user.toJson());
 };
 
 module.exports = controller;

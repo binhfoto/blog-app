@@ -4,6 +4,7 @@
   "description": "blog-app",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "binhnguyen",
@@ -12,10 +13,12 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "colors": "^1.1.2",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "express-jwt": "^5.1.0",
     "jsonwebtoken": "^7.1.9",
     "lodash": "^4.16.4",
+    "method-override": "^2.3.6",
     "mongoose": "^4.6.3",
     "morgan": "^1.7.0"
   },

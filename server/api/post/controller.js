@@ -68,7 +68,9 @@ controller.getOne = function(req, res, next){
 };
 
 controller.post = function(req, res, next){
+    var user = req.user;
     var post = req.body;
+    post.author = user._id;
     Post
         .create(post)
         .then(
